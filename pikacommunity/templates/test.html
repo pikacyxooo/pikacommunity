@@ -1,0 +1,203 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试样式页</title>
+    <link rel="stylesheet" href="{% static 'lib/semantic.min.css'%}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'lib/semantic.min.js' %}"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'lib/bootstrap-suggest.min.js'%}"></script>
+</head>
+<body>
+<div class="input-group" id="test" style="width: 100%;"><i class="clearable glyphicon glyphicon-remove"
+                                                 style="position: absolute; top: 12px; z-index: 4; cursor: pointer; font-size: 12px; display: none; right: 12px;"></i>
+    <input type="text" class="form-control" id="testNoBtn" style="border-radius: 4px; background: rgb(255, 255, 255);"
+           autocomplete="off" data-id="" alt="">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="" style="display: none;">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu"
+            style="padding-top: 0px; max-height: 375px; max-width: 800px; overflow: auto; width: auto; transition: 0.3s; display: none; left: -535px; right: auto; min-width: 540px;">
+            <table class="table table-condensed table-sm" style="margin:0">
+                <thead>
+                <tr>
+                    <th>姓名(31)</th>
+                    <th>shortAccount</th>
+                    <th>userId</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-index="0" data-id="20001" data-key="淳芸" class="">
+                    <td data-name="userName">淳芸</td>
+                    <td data-name="shortAccount">chunyun</td>
+                    <td data-name="userId">20001</td>
+                </tr>
+                <tr data-index="1" data-id="20000" data-key="orion-01" class="">
+                    <td data-name="userName">orion-01</td>
+                    <td data-name="shortAccount">orion-01</td>
+                    <td data-name="userId">20000</td>
+                </tr>
+                <tr data-index="2" data-id="20011" data-key="唐宏禹14" class="">
+                    <td data-name="userName">唐宏禹14</td>
+                    <td data-name="shortAccount">TANGHONGYU</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="3" data-id="20011" data-key="唐宏禹13" class="">
+                    <td data-name="userName">唐宏禹13</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="4" data-id="20002" data-key="穆晓晨" class="">
+                    <td data-name="userName">穆晓晨</td>
+                    <td data-name="shortAccount">mUXIAOCHEN</td>
+                    <td data-name="userId">20002</td>
+                </tr>
+                <tr data-index="5" data-id="20003" data-key="张欢引" class="jhover">
+                    <td data-name="userName">张欢引</td>
+                    <td data-name="shortAccount">zhanghuanyin</td>
+                    <td data-name="userId">20003</td>
+                </tr>
+                <tr data-index="6" data-id="20004" data-key="吴琼">
+                    <td data-name="userName">吴琼</td>
+                    <td data-name="shortAccount">wuqiong</td>
+                    <td data-name="userId">20004</td>
+                </tr>
+                <tr data-index="7" data-id="20005" data-key="吴东鹏">
+                    <td data-name="userName">吴东鹏</td>
+                    <td data-name="shortAccount">wudongpeng</td>
+                    <td data-name="userId">20005</td>
+                </tr>
+                <tr data-index="8" data-id="20006" data-key="黄少铅">
+                    <td data-name="userName">黄少铅</td>
+                    <td data-name="shortAccount">huangshaoqian</td>
+                    <td data-name="userId">20006</td>
+                </tr>
+                <tr data-index="9" data-id="20007" data-key="胡运燕">
+                    <td data-name="userName">胡运燕</td>
+                    <td data-name="shortAccount">yunyan</td>
+                    <td data-name="userId">20007</td>
+                </tr>
+                <tr data-index="10" data-id="20008" data-key="刘幸">
+                    <td data-name="userName">刘幸</td>
+                    <td data-name="shortAccount">liuxing</td>
+                    <td data-name="userId">20008</td>
+                </tr>
+                <tr data-index="11" data-id="20009" data-key="陈媛媛">
+                    <td data-name="userName">陈媛媛</td>
+                    <td data-name="shortAccount">CHENYUANYUAN</td>
+                    <td data-name="userId">20009</td>
+                </tr>
+                <tr data-index="12" data-id="20010" data-key="李大鹏">
+                    <td data-name="userName">李大鹏</td>
+                    <td data-name="shortAccount">dapeng</td>
+                    <td data-name="userId">20010</td>
+                </tr>
+                <tr data-index="13" data-id="20011" data-key="唐宏禹">
+                    <td data-name="userName">唐宏禹</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="14" data-id="20010" data-key="旷东林">
+                    <td data-name="userName">旷东林</td>
+                    <td data-name="shortAccount">kuangdonglin</td>
+                    <td data-name="userId">20010</td>
+                </tr>
+                <tr data-index="15" data-id="20011" data-key="唐宏禹15">
+                    <td data-name="userName">唐宏禹15</td>
+                    <td data-name="shortAccount">TANGhongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="16" data-id="20011" data-key="唐宏禹12">
+                    <td data-name="userName">唐宏禹12</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="17" data-id="20011" data-key="唐宏禹11">
+                    <td data-name="userName">唐宏禹11</td>
+                    <td data-name="shortAccount">TangHongYu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="18" data-id="20010" data-key="旷东林">
+                    <td data-name="userName">旷东林</td>
+                    <td data-name="shortAccount">kuangdonglin</td>
+                    <td data-name="userId">20010</td>
+                </tr>
+                <tr data-index="19" data-id="20011" data-key="唐宏禹10">
+                    <td data-name="userName">唐宏禹10</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="20" data-id="20011" data-key="唐宏禹">
+                    <td data-name="userName">唐宏禹</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="21" data-id="20011" data-key="唐宏禹9">
+                    <td data-name="userName">唐宏禹9</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="22" data-id="20011" data-key="唐宏禹8">
+                    <td data-name="userName">唐宏禹8</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="23" data-id="20011" data-key="唐宏禹7">
+                    <td data-name="userName">唐宏禹7</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="24" data-id="20010" data-key="旷东林">
+                    <td data-name="userName">旷东林</td>
+                    <td data-name="shortAccount">kuangdonglin</td>
+                    <td data-name="userId">20010</td>
+                </tr>
+                <tr data-index="25" data-id="20011" data-key="唐宏禹6">
+                    <td data-name="userName">唐宏禹6</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="26" data-id="20011" data-key="唐宏禹5">
+                    <td data-name="userName">唐宏禹5</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="27" data-id="20011" data-key="唐宏禹4">
+                    <td data-name="userName">唐宏禹4</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="28" data-id="20011" data-key="唐宏禹3">
+                    <td data-name="userName">唐宏禹3</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="29" data-id="20011" data-key="唐宏禹2">
+                    <td data-name="userName">唐宏禹2</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                <tr data-index="30" data-id="20011" data-key="唐宏禹1">
+                    <td data-name="userName">唐宏禹1</td>
+                    <td data-name="shortAccount">tanghongyu</td>
+                    <td data-name="userId">20011</td>
+                </tr>
+                </tbody>
+            </table>
+        </ul>
+    </div>
+    <!-- /btn-group -->
+</div>
+</body>
+<script>
+
+    var suggest_url = "{% url 'suggest' %}"
+    var bsSuggest = $("input#test").bsSuggest({
+          url: suggest_url+"?s="+searchText;
+          });
+</script>
+</html>

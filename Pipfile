@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-crispy-forms = "*"
+django-reversion = "*"
+django-formtools = "*"
+xlwt = "*"
+mysqlclient = "*"
+xlsxwriter = "*"
+pillow = "*"
+future = "*"
+"httplib2" = "*"
+six = "*"
+django-import-export = "*"
+django-simple-captcha = "*"
+Twisted = {path = "C:/Users/pp664/Downloads/Twisted-18.9.0-cp36-cp36m-win_amd64.whl"}
+scrapy = "*"
+elasticsearch-dsl = "==5.4.0"
+
+[dev-packages]
+pylint = "*"
+
+[requires]
+python_version = "3.6"

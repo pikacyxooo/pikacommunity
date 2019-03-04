@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>{% block title %}{% endblock title%}</title>
+    <link rel="stylesheet" href="{% static 'lib/semantic.css' %}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'lib/semantic.js' %}"></script>
+    {% block css %}{% endblock css %}
+
+</head>
+
+<body>
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item">主页</a>
+    <a class="item">工作</a>
+    <a class="item">公司</a>
+    <a class="item">职业</a>
+    <a class="item">登录</a>
+    <a class="item">注册</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="active item" href="{% url 'index' %}">主页</a>
+                <a class="item">工作</a>
+                <a class="item">公司</a>
+                <a class="item">职业</a>
+                <div class="right item">
+                    <a class="ui inverted button">登录</a>
+                    <a class="ui inverted button" href="{% url 'register' %}">注册</a>
+                </div>
+            </div>
+        </div>
+        {% block header-nonlogin %}
+        {% endblock header-nonlogin %}
+    </div>
+    {% block main %}
+    {% endblock main %}
+    {% block footer %}
+    {% endblock footer %}
+</div>
+</body>
+{% block js %}{% endblock js %}
+</html>
