@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+搜索结果
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock css %}
+{% block menu %}
+<!--<div class="search meau">-->
+    <!--<div class="ui four column grid">-->
+        <!--<div class="column">-->
+            <!--<div class="ui left aligned transparent icon input">-->
+            <!--<input type="text" placeholder="搜索...">-->
+            <!--<a class="iconfont icon-search"></a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="column">-->
+
+        <!--</div>-->
+        <!--<div class="column"></div>-->
+        <!--<div class="column"></div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="ui top fixed inverted search menu">
+    <a class="item" href="{% url 'index' %}">
+        pikaSearch
+    </a>
+    <div class="item">
+        <div class="ui transparent icon input">
+            <input type="text" class="search-input" placeholder="搜索..." value="{{key_word}}">
+            <a class="iconfont icon-search" onclick="add_search()" ></a>
+        </div>
+    </div>
+    <div class="right menu">
+        <a class="item" href="#">论坛</a>
+        <a class="item" href="#">登录</a>
+        <a class="item" href="{% url 'register' %}">注册</a>
+    </div>
+</div>
+{% endblock menu %}
+{% block main %}
+<div class="ui search-result container">
+    <div class="ui mini statistic search-num">
+        <div class="label">
+            <i class="iconfont icon-search"></i>
+            皮卡粗以为您搜索到{{total_nums}}条结果
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <div class="ui grid search-result-main">
+    	<div class="one wide column"></div>
+    	<div class="ten wide column search-result-items">
+            {% for hit in hits_list %}
+    		<div class="ui items search-result-item">
+			  <div class="item">
+			    <div class="content">
+			      <a class="header search-result-header" href="{{hit.url}}">{% autoescape off %}{{hit.title}}{% endautoescape %}</a>
+			      <div class="description">
+                      <span class="search-result-time">{{hit.date_time}}</span>
+                      <div class="search-result-content">{% autoescape off %}{{hit.content}}{% endautoescape %}</div>
+                      <div class="search-result-extra">
+                          <a class="search-result-url" href="{{hit.url}}">{{hit.url}}</a>
+                          <span class="search-result-from">来源于:{{hit.index_from}}</span>
+                      </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+            {% endfor %}
+            <div class="ui divider"></div>
+            <div id="Pagination" class="pagination pagination-type"></div>
+    	</div>
+    	<div class="five wide column"></div>
+    </div>
+</div>
+
+{% endblock main %}
+{% block footer %}
+<div class="ui vertical footer">
+    <div class="ui container center aligned">
+        <span>来自皮卡粗的乱七八糟搜索</span> @copyright chalize_pikachu
+    </div>
+</div>
+{% endblock footer %}
+{% block js %}
+<script src="{% static 'lib/pagination.js' %}"></script>
+<script>
+     var search_url = "{% url 'search' %}";
+     $(function(){
+        $('.search-input').keyup(function(event){
+            if(event.keyCode ==13){
+                var val = $(".search-input").val();
+                window.location.href=search_url+'?q='+val
+            }
+        });
+    });
+    function add_search(){
+        var val = $(".search-input").val();
+        window.location.href=search_url+'?q='+val
+    }
+    $(function(){
+    $("#Pagination").pagination({{total_nums}}, {
+        current_page :{{ page|add:'-1' }}, //当前页码
+		items_per_page :10,
+		display_msg :true,
+        callback: pageselectCallback,
+    });
+    });
+    function pageselectCallback(page_id){
+        var searchText = $(".search-input").val();
+        window.location.href=search_url+'?q='+searchText+'&p='+(page_id+1)
+    }
+</script>
+{% endblock js %}

@@ -2,12 +2,15 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from .models import ArticleType
 from django.http import HttpResponse
+from elasticsearch import Elasticsearch
 import json
+
+client = Elasticsearch(hosts=['127.0.0.1'])
 
 
 class SuggestView(View):
-    def get(self,request):
-        keyword = request.GET.get('s','')
+    def get(self, request):
+        keyword = request.GET.get('s', '')
         suggest_list = []
         s = ArticleType.search()
         s = s.suggest('my_suggest', keyword, completion={
@@ -23,7 +26,56 @@ class SuggestView(View):
             suggest_list.append(source['title'])
         return HttpResponse(json.dumps(suggest_list), content_type="application/json")
 
+
 class SearchView(View):
-    pass
-
-
+    def get(self, request):
+        key_word = request.GET.get('q', '')
+        page = request.GET.get('p','1')
+        try:
+            page = int(page)
+        except:
+            page = 1
+        response = client.search(
+            index="jobbole",
+            body={
+                "query": {
+                    "multi_match": {
+                        "query": key_word,
+                        "fields": ["tags", "title", "content"]
+                    }
+                },
+                "from": (page-1)*10,
+                "size": 10,
+                "highlight": {
+                    "pre_tags": ['<span class="keyWord">'],
+                    "post_tags": ['</span>'],
+                    "fields": {
+                        "title": {},
+                        "content": {},
+                    }
+                }
+            }
+        )
+        totol_nums = response['hits']['total']
+        hits_list = []
+        for hit in response['hits']['hits']:
+            hit_dict = {}
+            hit_dict['index_from'] = hit['_index']
+            if 'title' in hit['highlight']:
+                hit_dict['title'] = "".join(hit['highlight']['title'])
+            else:
+                hit_dict['title'] = hit['_source']['title']
+            if 'content' in hit['highlight']:
+                hit_dict['content'] = "".join(hit['highlight']['content'][:500])
+            else:
+                hit_dict['content'] = hit['_source']['content'][:500]
+            hit_dict['date_time'] = hit['_source']['date_time']
+            hit_dict['tags'] = hit['_source']['tags'].split(',')
+            hit_dict['url'] = hit['_source']['url']
+            hits_list.append(hit_dict)
+        return render(request,'search.html',{
+            'hits_list':hits_list,
+            'total_nums':totol_nums,
+            'page':page,
+            'key_word':key_word,
+        })

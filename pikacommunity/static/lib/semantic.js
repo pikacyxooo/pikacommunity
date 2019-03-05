@@ -8094,7 +8094,7 @@ $.fn.dropdown.settings = {
   clearable              : false,      // whether the value of the dropdown can be cleared
 
   apiSettings            : false,
-  selectOnKeydown        : true,       // Whether selection should occur automatically when keyboard shortcuts used
+  selectOnKeydown        : false,       // Whether selection should occur automatically when keyboard shortcuts used
   minCharacters          : 0,          // Minimum characters required to trigger API call
 
   filterRemoteData       : false,      // Whether API results should be filtered after being returned for query term
@@ -8104,31 +8104,31 @@ $.fn.dropdown.settings = {
 
   context                : window,     // Context to use when determining if on screen
   direction              : 'auto',     // Whether dropdown should always open in one direction
-  keepOnScreen           : true,       // Whether dropdown should check whether it is on screen before showing
+  keepOnScreen           : false,       // Whether dropdown should check whether it is on screen before showing
 
   match                  : 'both',     // what to match against with search selection (both, text, or label)
   fullTextSearch         : false,      // search anywhere in value (set to 'exact' to require exact matches)
 
   placeholder            : 'auto',     // whether to convert blank <select> values to placeholder text
-  preserveHTML           : true,       // preserve html when selecting value
+  preserveHTML           : false,       // preserve html when selecting value
   sortSelect             : false,      // sort selection on init
 
-  forceSelection         : true,       // force a choice on blur with search selection
+  forceSelection         : false,       // force a choice on blur with search selection
 
   allowAdditions         : false,      // whether multiple select should allow user added values
   ignoreCase             : true,       // whether to consider values not matching in case to be the same
-  hideAdditions          : true,       // whether or not to hide special message prompting a user they can enter a value
+  hideAdditions          : false,       // whether or not to hide special message prompting a user they can enter a value
 
   maxSelections          : false,      // When set to a number limits the number of selections to this count
-  useLabels              : true,       // whether multiple select should filter currently active selections from choices
+  useLabels              : false,       // whether multiple select should filter currently active selections from choices
   delimiter              : ',',        // when multiselect uses normal <input> the values will be delimited with this character
 
-  showOnFocus            : true,       // show menu on focus
+  showOnFocus            : false,       // show menu on focus
   allowReselection       : false,      // whether current value should trigger callbacks when reselected
-  allowTab               : true,       // add tabindex to element
+  allowTab               : false,       // add tabindex to element
   allowCategorySelection : false,      // allow elements with sub-menus to be selected
 
-  fireOnInit             : true,      // Whether callbacks should fire when initializing dropdown values
+  fireOnInit             : false,      // Whether callbacks should fire when initializing dropdown values
 
   transition             : 'auto',     // auto transition will slide down or up based on direction
   duration               : 200,        // duration of transition

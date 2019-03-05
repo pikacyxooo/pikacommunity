@@ -5,21 +5,19 @@
 {% endblock title %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-<link rel="stylesheet" href="{% static 'lib/iconfont.css' %}">
 {% endblock css %}
-
-{% block header-nonlogin %}
+{% block header-search %}
 <div class="ui text container">
     <img id="menu-title" class="ui centered image meau-title-img" src="{% static 'image/Pikachu_logo.png' %}">
     <h2>你想做的时候就去做</h2>
     <div class="ui fluid  search selection icon dropdown">
-        <a class="iconfont icon-search searchbtn"></a>
+        <span class="iconfont icon-search searchbtn" onclick="add_search()"></span>
         <input class="search searchInput" placeholder="搜索..."/>
         <div class="menu dataList">
         </div>
     </div>
 </div>
-{% endblock header-nonlogin %}
+{% endblock header-search %}
 {% block main %}
 <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
@@ -83,32 +81,9 @@
 </div>
 {% endblock main %}
 {% block footer %}
-<div class="ui inverted vertical footer segment">
-    <div class="ui container">
-        <div class="ui stackable inverted divided equal height stackable grid">
-            <div class="three wide column">
-                <h4 class="ui inverted header">关于</h4>
-                <div class="ui inverted link list">
-                    <a href="homepage.php#" class="item">Sitemap</a>
-                    <a href="homepage.php#" class="item">Contact Us</a>
-                    <a href="homepage.php#" class="item">Religious Ceremonies</a>
-                    <a href="homepage.php#" class="item">Gazebo Plans</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">服务</h4>
-                <div class="ui inverted link list">
-                    <a href="homepage.php#" class="item">Banana Pre-Order</a>
-                    <a href="homepage.php#" class="item">DNA FAQ</a>
-                    <a href="homepage.php#" class="item">How To Access</a>
-                    <a href="homepage.php#" class="item">Favorite X-Men</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header">页脚</h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-            </div>
-        </div>
+<div class="ui vertical footer">
+    <div class="ui container center aligned">
+        <span>来自皮卡粗的乱七八糟搜索</span> @copyright chalize_pikachu
     </div>
 </div>
 {% endblock footer %}
@@ -119,9 +94,10 @@
     ;
     var suggest_url = "{% url 'suggest' %}"
     var search_url = "{% url 'search' %}"
+    var searchText = null
     $(function(){
         $('.searchInput').bind('input propertychange',function(){
-            var searchText = $(this).val();
+            searchText = $(this).val();
             var tmpHtml = ""
             $.ajax({
                 cache: false,
@@ -143,6 +119,16 @@
                 }
             });
         });
-})
+    })
+    $(function(){
+        $('.searchInput').keyup(function(event){
+            if(event.keyCode ==13){
+                window.location.href=search_url+'?q='+searchText
+            }
+        });
+    });
+    function add_search(){
+        window.location.href=search_url+'?q='+searchText
+    }
 </script>
 {% endblock js %}

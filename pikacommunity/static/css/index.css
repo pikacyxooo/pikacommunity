@@ -98,7 +98,6 @@
     }
 }
 .ui.inverted.vertical.masthead.center.aligned.segment{
-    background-color: rgb(190, 180, 180);
     min-height:600px;
 }
 .ui.image.meau-title-img{
@@ -129,9 +128,15 @@
 .iconfont.icon-search.searchbtn {
     position: absolute;
     right: 10px;
+    z-index:99;
 }
 
 .ui.dropdown.filtered.item {
     display: inline-block !important;
 }
-
+.hidden-search-input{
+    display:hidden;
+}
+.dataList.item{
+    margin_bottom:5px;
+}

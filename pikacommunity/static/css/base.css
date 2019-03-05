@@ -1,0 +1,75 @@
+.masthead .logo.item img {
+    margin-right: 1em;
+}
+
+.masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+.ui.vertical.stripe {
+    padding: 8em 0em;
+}
+
+.ui.vertical.stripe h3 {
+    font-size: 2em;
+}
+
+.ui.vertical.stripe .button+h3,
+.ui.vertical.stripe p+h3 {
+    margin-top: 3em;
+}
+
+.ui.vertical.stripe .floated.image {
+    clear: both;
+}
+
+.ui.vertical.stripe p {
+    font-size: 1.33em;
+}
+
+.ui.vertical.stripe .horizontal.divider {
+    margin: 3em 0em;
+}
+
+.quote.stripe.segment {
+    padding: 0em;
+}
+
+.quote.stripe.segment .grid .column {
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.ui.secondary.inverted.pointing.menu {
+    border: none;
+}
+
+.ui.inverted.vertical.masthead.center.aligned.segment{
+    background-color: #552cad;
+}
+
+.ui.vertical.footer{
+    background-color:#552cad;
+    height:40px;
+}
+.ui.vertical.footer > div{
+    line-height:40px;
+    color:#fff;
+    font-weight: bold;
+    font-style: normal;
+}
+.ui.vertical.footer > div > span{
+    margin-right:10px;
+}

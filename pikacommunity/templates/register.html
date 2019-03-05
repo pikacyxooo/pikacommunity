@@ -6,6 +6,20 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock css%}
+{% block menu %}
+<div class="ui container">
+    <div class="ui large secondary inverted pointing menu">
+        <a class="active item" href="{% url 'index' %}">主页</a>
+        <a class="item">工作</a>
+        <a class="item">公司</a>
+        <a class="item">职业</a>
+        <div class="right item">
+            <a class="ui inverted button">登录</a>
+            <a class="ui inverted button" href="{% url 'register' %}">注册</a>
+        </div>
+    </div>
+</div>
+{% endblock menu %}
 {% block main %}
 <div class="ui middle aligned center aligned grid">
     <div class="column">
@@ -46,32 +60,9 @@
 <script src="/static/js/register.js"></script>
 {% endblock js %}
 {% block footer %}
-<div class="ui inverted vertical footer segment">
-    <div class="ui container">
-        <div class="ui stackable inverted divided equal height stackable grid">
-            <div class="three wide column">
-                <h4 class="ui inverted header">关于</h4>
-                <div class="ui inverted link list">
-                    <a href="homepage.php#" class="item">Sitemap</a>
-                    <a href="homepage.php#" class="item">Contact Us</a>
-                    <a href="homepage.php#" class="item">Religious Ceremonies</a>
-                    <a href="homepage.php#" class="item">Gazebo Plans</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">服务</h4>
-                <div class="ui inverted link list">
-                    <a href="homepage.php#" class="item">Banana Pre-Order</a>
-                    <a href="homepage.php#" class="item">DNA FAQ</a>
-                    <a href="homepage.php#" class="item">How To Access</a>
-                    <a href="homepage.php#" class="item">Favorite X-Men</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header">页脚</h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-            </div>
-        </div>
+<div class="ui vertical footer">
+    <div class="ui container center aligned">
+        <span>来自皮卡粗的乱七八糟搜索</span> @copyright chalize_pikachu
     </div>
 </div>
 {% endblock footer %}

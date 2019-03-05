@@ -1,0 +1,84 @@
+.ui.top.fixed.inverted.search.menu{
+    background-color: #552cad;
+    margin-bottom:20px;
+}
+
+.ui.transparent.icon.input input{
+    color: #eeeeee;
+}
+
+.ui.search-result.container{
+    margin-top:30px;
+}
+
+.ui.mini.statistic.search-num{
+    display:inline-block;
+    padding-top:30px;
+    padding-left:30px;
+}
+
+.ui.mini.statistic.search-num i{
+    margin-right:10px;
+}
+
+.ui.divider{
+    margin:0px;
+}
+.ui.grid.search-result-main{
+    margin-top:40px;
+}
+
+.ui.search-result.container .ui.grid.search-result-main a.header.search-resutl-header{
+    font-size:22px;
+    color:#534d4d;
+}
+.search-result-time{
+    font-size:12px;
+    color:#666;
+}
+
+.ten.wide.column.search-result-items{
+    padding-top:10px;
+}
+
+.ui.items.search-result-item{
+    margin-bottom:50px;
+
+}
+.content .header.search-result-header span.keyWord{
+    color:#992929;
+}
+.content .search-result-content span.keyWord{
+    color:#992929;
+}
+
+.search-result-extra{
+    color:#552cad;
+    margin-top:15px;
+}
+
+.pagination.pagination-type{
+    margin-top:100px;
+    margin-bottom:80px;
+}
+
+.pagination.pagination-type .prev{
+    margin-left:23%;
+}
+
+.pagination.pagination-type a{
+    color:#552cad;
+    margin:10px;
+}
+.pagination.pagination-type span{
+    margin:10px;
+}
+.pagination.pagination-type .pxofy{
+    margin-top:20px;
+    font-size:18px;
+    color:#808080;
+    text-align:center;
+}
+span.search-result-from{
+    margin-left:50px;
+}
