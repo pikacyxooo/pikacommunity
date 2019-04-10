@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>{% block title %}{% endblock title%}</title>
+    <link rel="stylesheet" href="{% static 'lib/semantic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog_base.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/iconfont.css' %}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'lib/semantic.js' %}"></script>
+    {% block css %}{% endblock css %}
+</head>
+<body>
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item">主页</a>
+    <a class="item">工作</a>
+    <a class="item">公司</a>
+    <a class="item">职业</a>
+    <a class="item">登录</a>
+    <a class="item">注册</a>
+</div>
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui top fixed inverted search menu">
+            <a class="item" href="{% url 'index' %}">
+                pikaSearch
+            </a>
+            <div class="item">
+                <div class="ui transparent icon input">
+                    <input type="text" class="search-input" placeholder="搜索..." value="{{key_word}}">
+                    <a class="iconfont icon-search" onclick="add_search()"></a>
+                </div>
+            </div>
+            <a class="item" href="{% url 'blog_home' %}">论坛</a>
+            {% if request.user.is_authenticated %}
+            <div class="right menu">
+                <a class="item" href="#">{{ request.user.username }}</a>
+                <a class="item" href="{% url 'logout' %}">退出登录</a>
+            </div>
+            {% else %}
+            <div class="right menu">
+                <a class="item" href="#">论坛</a>
+                <a class="item" href="{% url 'login' %}">登录</a>
+                <a class="item" href="{% url 'register' %}">注册</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="ui container blog_header">
+        <div class="ui secondary pointing menu">
+            {% block tag_list %}
+            {% endblock tag_list %}
+        </div>
+        <div class="ui two column grid">
+            <div class="twelve wide column">
+                {% block tag_note %}
+                {% endblock tag_note %}
+                {% block bread %}
+                    <div class="ui breadcrumb">
+                        <div class="section">主页</div>
+                        <div class="divider"> / </div>
+                        <div class="active section">模板</div>
+                    </div>
+                {% endblock bread %}
+                {% block left %}
+                {% endblock left %}
+            </div>
+            <div class="four wide column">
+                {% if request.user.is_authenticated %}
+                <div class="ui card">
+                    <div class="content">
+                        <img class="right floated mini ui image" src="{{ MEDIA_URL }}{{ request.user.image }}">
+                        <div class="header">
+                            {{ request.user.username }}
+                        </div>
+                        <div class="meta">
+                            {{ request.user.address }}
+                        </div>
+                        <div class="description">
+                            这个人是个狼人
+                        </div>
+                    </div>
+                    <div class="extra content">
+                      <div class="ui two buttons">
+                        <a class="ui basic green button" id="user_center">个人中心</a>
+                        <a class="ui basic red button" id="card_logout" href="{% url 'logout' %}">退出登录</a>
+                      </div>
+                    </div>
+                </div>
+                <a class="positive ui button publish-article" href="{% url 'blog_publish' %}">发表我的文章!!!</a>
+                {% else %}
+                <div class="ui card">
+                    <div class="image">
+                        <img src="{% static 'image/timg.jpg' %}">
+                    </div>
+                    <div class="content">
+                        <div class="header">想自己动手写一写?</div>
+                        <div class="meta">登录/注册吧！</div>
+                    </div>
+                    <div class="extra content">
+                        <a class="ui basic green button center aligned" href="{% url 'login' %}">登录</a>
+                        <a class="ui basic red button" href="{% url 'register' %}">注册</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical footer">
+        <div class="ui container center aligned">
+            <span class="footer-text">来自皮卡粗的乱七八糟搜索</span> @copyright chalize_pikachu
+        </div>
+    </div>
+</div>
+</body>
+{% block js %}
+{% endblock js %}
+</html>

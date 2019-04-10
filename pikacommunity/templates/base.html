@@ -17,7 +17,6 @@
 </head>
 
 <body>
-<!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
     <a class="active item">主页</a>
     <a class="item">工作</a>
@@ -31,18 +30,29 @@
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
         {% block menu %}
+        {% if request.user.is_authenticated %}
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
                 <a class="active item" href="{% url 'index' %}">主页</a>
-                <a class="item">工作</a>
-                <a class="item">公司</a>
-                <a class="item">职业</a>
+                <a class="item" href="{% url 'blog_home' %}">论坛</a>
                 <div class="right item">
-                    <a class="ui inverted button">登录</a>
+                    <a href="#">{{ request.user.username }}</a>
+                    <a class="ui inverted button" href="{% url 'logout' %}">退出登录</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="active item" href="{% url 'index' %}">主页</a>
+                <a href="{% url 'blog_home' %}" class="item">论坛</a>
+                <div class="right item">
+                    <a class="ui inverted button" href="{% url 'login' %}">登录</a>
                     <a class="ui inverted button" href="{% url 'register' %}">注册</a>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endblock menu %}
         {% block header-search %}
         {% endblock header-search %}

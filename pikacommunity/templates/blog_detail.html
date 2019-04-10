@@ -1,0 +1,56 @@
+{% extends 'blog_base.html' %}
+{% load staticfiles %}
+{% block title %}
+{{ blog.name }}
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
+{% endblock css %}
+{% block bread %}
+<div class="ui breadcrumb blog_bread">
+    <div class="section"><a href="{% url 'index' %}">主页</a></div>
+    <div class="divider"> / </div>
+    <div class="section"><a href="{% url 'blog_home' %}">博客</a></div>
+    <div class="divider">/</div>
+    <div class="active section">{{ blog.name }}</div>
+</div>
+{% endblock bread %}
+{% block left %}
+<div class="main">
+	<h1 class="ui header">
+		{{ blog.name }}
+	</h1>
+	<div class="desc">
+        <span class="author-img">
+            <img class="ui tiny circular image" src="{{ MEDIA_URL }}{{ blog.author.image }}">
+        </span>
+        <span class="author-name">{{ blog.author }}</span>
+        <span class="create-time">{{ blog.create_time|date:"Y-m-d H:i:s" }}</span></div>
+	<div class="ui basic segment very padded content">
+		{{ blog.content|safe }}
+	</div>
+</div>
+{% endblock left %}
+{% block js %}
+<script src="{% static 'lib/pagination.js' %}"></script>
+<script>
+
+     $('#card_logout').click(function(){
+         window.location.href = "{% url 'logout' %}"
+     });
+     var search_url = "{% url 'search' %}";
+     $(function(){
+        $('.search-input').keyup(function(event){
+            if(event.keyCode ==13){
+                var val = $(".search-input").val();
+                window.location.href=search_url+'?q='+val
+            }
+        });
+    });
+    function add_search(){
+        var val = $(".search-input").val();
+        window.location.href=search_url+'?q='+val
+    }
+</script>
+{% endblock js %}

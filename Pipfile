@@ -20,6 +20,7 @@ django-simple-captcha = "*"
 Twisted = {path = "C:/Users/pp664/Downloads/Twisted-18.9.0-cp36-cp36m-win_amd64.whl"}
 scrapy = "*"
 elasticsearch-dsl = "==5.4.0"
+django-ckeditor = "*"
 
 [dev-packages]
 pylint = "*"

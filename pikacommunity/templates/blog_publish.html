@@ -1,0 +1,91 @@
+{% extends 'blog_base.html' %}
+{% load staticfiles %}
+{% block title %}
+{{ blog.name }}
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog_publish.css' %}">
+{% endblock css %}
+{% block bread %}
+<div class="ui breadcrumb blog_bread">
+    <div class="section"><a href="{% url 'index' %}">主页</a></div>
+    <div class="divider"> / </div>
+    <div class="section"><a href="{% url 'blog_home' %}">博客</a></div>
+    <div class="divider">/</div>
+    <div class="active section">发表我的博客</div>
+</div>
+{% endblock bread %}
+{% block left %}
+<form action="{% url 'blog_publish' %}" method="post">
+    <div class="ui labeled input title">
+        <div class="ui label">标题:</div>
+        <input type="text" name="title" placeholder="请在这里输入博客标题" autocomplete="off">
+    </div>
+    {{ publish_form.media }}
+    {{ publish_form.as_p }}
+    <!--<div class="ui selection dropdown">-->
+        <!--<input type="hidden" name="blog_id">-->
+        <!--<i class="dropdown icon"></i>-->
+        <!--<div class="default text">博客标签</div>-->
+        <!--<div class="menu">-->
+            <!--{% for tag in tags %}-->
+            <!--<div class="item" data-value="{{ tag.id }}">{{ tag.name }}</div>-->
+            <!--{% endfor %}-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="ui multiple selection dropdown" tabindex="0">
+        <input name="tags" type="hidden" value="">
+        <i class="dropdown icon"></i>
+        <div class="default text">默认</div>
+        <div class="menu transition hidden" tabindex="-1">
+            {% for tag in tags %}
+            <div class="item" data-value="{{ tag.id }}">{{ tag.name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if msg %}
+    <div class="ui bottom warning message">
+        <a href="#">{{msg}}</a>。
+    </div>
+    {% endif %}
+    <div class="publish_btn">
+        <input class="ui primary button" type="submit" value="提交">
+    </div>
+    {% csrf_token %}
+</form>
+{% endblock left %}
+{% block js %}
+<script src="{% static 'lib/pagination.js' %}"></script>
+<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script>
+     $('#card_logout').click(function(){
+         window.location.href = "{% url 'logout' %}"
+     });
+     var search_url = "{% url 'search' %}";
+     $(function(){
+        $('.search-input').keyup(function(event){
+            if(event.keyCode ==13){
+                var val = $(".search-input").val();
+                window.location.href=search_url+'?q='+val
+            }
+        });
+    });
+    $(function(){
+        $('.ui.dropdown').dropdown({
+            allowAdditions: true
+        });
+        $('.no.label.example .ui.dropdown')
+            .dropdown({
+            useLabels: false
+        });
+    });
+
+    function add_search(){
+        var val = $(".search-input").val();
+        window.location.href=search_url+'?q='+val
+    }
+</script>
+{% endblock js %}

@@ -1,0 +1,10 @@
+label{
+    display:none
+}
+.ui.labeled.input.title{
+    margin-top:50px;
+    margin-bottom:30px;
+}
+.publish_btn{
+    margin-top:30px;
+}

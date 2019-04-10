@@ -1,0 +1,19 @@
+.ui.container.blog_header{
+	margin-top: 30px
+}
+.ui.container.blog_header .ui.card .header{
+	font-size: 1.0em;
+}
+.ui.breadcrumb.blog_bread{
+	margin-top: 40px;
+}
+.ui.vertical.footer {
+    margin-top: 100px;
+}
+.ui.vertical.footer > div > span{
+    color:#bbb;
+}
+.positive.ui.button.publish-article{
+    margin-left:40px;
+    position:fixed;
+}

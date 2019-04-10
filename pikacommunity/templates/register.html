@@ -5,19 +5,32 @@
 {% endblock title %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
 {% endblock css%}
 {% block menu %}
-<div class="ui container">
-    <div class="ui large secondary inverted pointing menu">
-        <a class="active item" href="{% url 'index' %}">主页</a>
-        <a class="item">工作</a>
-        <a class="item">公司</a>
-        <a class="item">职业</a>
-        <div class="right item">
-            <a class="ui inverted button">登录</a>
-            <a class="ui inverted button" href="{% url 'register' %}">注册</a>
+<div class="ui top fixed inverted search menu">
+    <a class="item" href="{% url 'index' %}">
+        pikaSearch
+    </a>
+    <div class="item">
+        <div class="ui transparent icon input">
+            <input type="text" class="search-input" placeholder="搜索..." value="{{key_word}}">
+            <a class="iconfont icon-search" onclick="add_search()"></a>
         </div>
     </div>
+    <a class="item" href="{% url 'blog_home' %}">论坛</a>
+    {% if request.user.is_authenticated %}
+    <div class="right menu">
+        <a class="item" href="#">{{ request.user.username }}</a>
+        <a class="item" href="{% url 'register' %}">退出登录</a>
+    </div>
+    {% else %}
+    <div class="right menu">
+        <a class="item" href="#">论坛</a>
+        <a class="item" href="{% url 'login' %}">登录</a>
+        <a class="item" href="{% url 'register' %}">注册</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock menu %}
 {% block main %}
@@ -45,7 +58,7 @@
                 </div>
                 <button class="ui fluid large submit button" type="submit">注册账号</button>
             </div>
-            <div class="ui error message">{{msg}}</div>
+            <div class="ui red message {% ifequal msg None %}hidden{% endifequal %}">{{ msg }}</div>
             {% csrf_token %}
         </form>
 

@@ -1,0 +1,92 @@
+{% extends 'blog_base.html' %}
+{% load staticfiles %}
+{% block title %}
+皮卡粗论坛
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog_home.css' %}">
+{% endblock css %}
+{% block tag_list %}
+<a href="?tag=" class="item {% ifequal blog_tag.id None %}violet active{% endifequal %}">热门</a>
+{% for tag in blog_tags %}
+<a class="item {% ifequal blog_tag.id tag.id %}violet active{% endifequal %}" href="?tag={{ tag.id }}&sort={{ sort }}">
+    {{ tag.name }}
+</a>
+{% endfor %}
+{% endblock tag_list %}
+{% block tag_note%}
+<div class="ui segment very padded tag_desc">
+    {% ifequal blog_tag None %}
+    这里汇集了许许多多的热门内容👍
+    {% else %}
+    {{ blog_tag.desc|truncatechars:150 }}
+    {% endifequal %}
+</div>
+{% endblock tag_note %}
+{% block bread %}
+<div class="ui breadcrumb blog_bread">
+    <div class="section">主页</div>
+    <div class="divider"> / </div>
+    <div class="section">博客</div>
+    <div class="divider">/</div>
+    <div class="active section">{{ blog_tag.name }}</div>
+</div>
+{% endblock bread %}
+{% block left %}
+<div class="ui two column grid left">
+    <div class="three wide column">
+        <div class="ui vertical text menu sort_type">
+            <div class="header item">排序</div>
+            <a class="item {% ifequal sort '' %}violet active{% endifequal %}" href="?tag={% if blog_tag %}{{ blog_tag.id }}{% endif %}">最近</a>
+            <a class="item">评论</a>
+            <a class="item {% ifequal sort 'hot' %}violet active{% endifequal %}" href="?sort=hot&tag={% if blog_tag %}{{ blog_tag.id }}{% endif %}">热度</a>
+        </div>
+    </div>
+    <div class="thirteen wide column">
+        <div class="ui items blogs">
+            {% for blog in blog_list %}
+            <div class="item">
+                <div class="content">
+                    <a class="header" href="{% url 'blog_detail' blog.id %}">{{ blog.name }}</a>
+                    <div class="meta">
+                        <span class="author">{{ blog.author.username }}</span>
+                        <span class="tag">{% for tag in blog.get_tag %}{{ tag.name }}&nbsp&nbsp{% endfor %}</span>
+                    </div>
+                    <div class="description">
+                        {{ blog.content | truncatechars:200 | safe}}
+                    </div>
+                    <div class="extra">
+                        <a href="#">👍</a>
+                        <span>121 票</span>
+                        <span class="right floated">2019-3-16</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock left %}
+{% block js %}
+<script src="{% static 'lib/pagination.js' %}"></script>
+<script>
+
+     $('#card_logout').click(function(){
+         window.location.href = "{% url 'logout' %}"
+     });
+     var search_url = "{% url 'search' %}";
+     $(function(){
+        $('.search-input').keyup(function(event){
+            if(event.keyCode ==13){
+                var val = $(".search-input").val();
+                window.location.href=search_url+'?q='+val
+            }
+        });
+    });
+    function add_search(){
+        var val = $(".search-input").val();
+        window.location.href=search_url+'?q='+val
+    }
+</script>
+{% endblock js %}

@@ -1,0 +1,25 @@
+.main .ui.header{
+    margin-top:40px;
+}
+
+.main .desc .author-name{
+    margin-right:15px;
+}
+
+.desc{
+    color:#999;
+}
+
+.ui.tiny.circular.image{
+    max-width:40px;
+    max-height:40px;
+    display:inline;
+    margin-right:15px;
+}
+
+.
+
+.ui.segment.very.padded.content{
+    margin-top:30px;
+    color:#444;
+}

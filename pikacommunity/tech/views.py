@@ -36,12 +36,16 @@ class SearchView(View):
         except:
             page = 1
         response = client.search(
-            index="jobbole",
+            index="_all",
             body={
+                "indices_boost": {
+                    "jianshu": 2,
+                    "jobbole": 1
+                },
                 "query": {
                     "multi_match": {
                         "query": key_word,
-                        "fields": ["tags", "title", "content"]
+                        "fields": ["title^10", "content"]
                     }
                 },
                 "from": (page-1)*10,
@@ -70,8 +74,8 @@ class SearchView(View):
             else:
                 hit_dict['content'] = hit['_source']['content'][:500]
             hit_dict['date_time'] = hit['_source']['date_time']
-            hit_dict['tags'] = hit['_source']['tags'].split(',')
             hit_dict['url'] = hit['_source']['url']
+            hit_dict['score'] = hit['_score']
             hits_list.append(hit_dict)
         return render(request,'search.html',{
             'hits_list':hits_list,

@@ -23,6 +23,6 @@ def send_message(email,email_type='register'):
     email_record.save()
     if email_type == 'register':
         email_title = '皮卡出社区账号激活链接'
-        email_content = '点击下方链接激活您的账号哦 (*^▽^*) http://127.0.0.1/active/{0}'.format(code)
+        email_content = '点击下方链接激活您的账号哦 (*^▽^*) http://127.0.0.1:8000/users/active/{0}'.format(code)
         send_status = send_mail(email_title,email_content,EMAIL_FROM,[email])
         return send_status

@@ -7,21 +7,6 @@
 <link rel="stylesheet" href="{% static 'css/search.css' %}">
 {% endblock css %}
 {% block menu %}
-<!--<div class="search meau">-->
-    <!--<div class="ui four column grid">-->
-        <!--<div class="column">-->
-            <!--<div class="ui left aligned transparent icon input">-->
-            <!--<input type="text" placeholder="搜索...">-->
-            <!--<a class="iconfont icon-search"></a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="column">-->
-
-        <!--</div>-->
-        <!--<div class="column"></div>-->
-        <!--<div class="column"></div>-->
-    <!--</div>-->
-<!--</div>-->
 <div class="ui top fixed inverted search menu">
     <a class="item" href="{% url 'index' %}">
         pikaSearch
@@ -32,11 +17,19 @@
             <a class="iconfont icon-search" onclick="add_search()" ></a>
         </div>
     </div>
-    <div class="right menu">
-        <a class="item" href="#">论坛</a>
-        <a class="item" href="#">登录</a>
-        <a class="item" href="{% url 'register' %}">注册</a>
-    </div>
+    <a class="item" href="{% url 'blog_home' %}">论坛</a>
+    {% if request.user.is_authenticated %}
+         <div class="right menu">
+            <a class="item" href="#">{{ request.user.username }}</a>
+            <a class="item" href="{% url 'register' %}">退出登录</a>
+        </div>
+    {% else %}
+        <div class="right menu">
+            <a class="item" href="#">论坛</a>
+            <a class="item" href="{% url 'login' %}">登录</a>
+            <a class="item" href="{% url 'register' %}">注册</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock menu %}
 {% block main %}
@@ -62,6 +55,7 @@
                       <div class="search-result-extra">
                           <a class="search-result-url" href="{{hit.url}}">{{hit.url}}</a>
                           <span class="search-result-from">来源于:{{hit.index_from}}</span>
+                          <span>{{hit.score}}</span>
                       </div>
 			      </div>
 			    </div>

@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 # Application definition
 
@@ -41,9 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'xadmin',
+    'ckeditor',
     'crispy_forms',
     'users',
     'captcha',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +158,7 @@ CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null', # 没有样式
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 # 超时(minutes)
 CAPTCHA_TIMEOUT = 1
-
+CKEDITOR_UPLOAD_PATH = 'upload/'
 
 EMAIL_HOST = "smtp.sina.com"
 EMAIL_PORT = 25

@@ -3,7 +3,7 @@
 }
 
 .masthead.segment {
-    min-height: 500px;
+    min-height: 650px;
     padding: 1em 0em;
 }
 
@@ -98,7 +98,7 @@
     }
 }
 .ui.inverted.vertical.masthead.center.aligned.segment{
-    min-height:600px;
+    min-height:62px;
 }
 .ui.image.meau-title-img{
     width:100px;

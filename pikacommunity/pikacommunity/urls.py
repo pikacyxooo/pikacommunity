@@ -14,20 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import xadmin
-from .settings import MEDIA_URL,MEDIA_ROOT
+from django.conf import settings
 from django.urls import path,include
 from django.views.generic.base import TemplateView
 from django.conf.urls.static import static
-from users.views import RegisterView
-from tech.views import SuggestView,SearchView
 
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('',TemplateView.as_view(template_name='index.html'),name='index'),
-    path('register/',RegisterView.as_view(),name='register'),
+    path('users/',include('users.urls')),
     path('captcha/',include('captcha.urls')),
     path('test/',TemplateView.as_view(template_name='test.html'),name='test'),
-    path('suggest/',SuggestView.as_view(),name='suggest'),
-    path('search',SearchView.as_view(),name='search')
+    path('tech/',include('tech.urls')),
+    path('blog/',include('blog.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

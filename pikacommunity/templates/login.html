@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    登录界面
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+登录页(*^▽^*)
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock css%}
+{% block menu %}
+<div class="ui top fixed inverted search menu">
+    <a class="item" href="{% url 'index' %}">
+        pikaSearch
+    </a>
+    <div class="item">
+        <div class="ui transparent icon input">
+            <input type="text" class="search-input" placeholder="搜索..." value="{{key_word}}">
+            <a class="iconfont icon-search" onclick="add_search()"></a>
+        </div>
+    </div>
+    <a class="item" href="{% url 'blog_home' %}">论坛</a>
+    {% if request.user.is_authenticated %}
+    <div class="right menu">
+        <a class="item" href="#">{{ request.user.username }}</a>
+        <a class="item" href="{% url 'register' %}">退出登录</a>
+    </div>
+    {% else %}
+    <div class="right menu">
+        <a class="item" href="#">论坛</a>
+        <a class="item" href="{% url 'login' %}">登录</a>
+        <a class="item" href="{% url 'register' %}">注册</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock menu %}
+{% block main %}
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui massive header">
+            登录账号(*^▽^*)
+        </h2>
+        <form class="ui large form" method="post" action="{% url 'login' %}" autocomplete="off">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="email" placeholder="邮箱地址">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="password" name="password" placeholder="密码">
+                    </div>
+                </div>
+                <button class="ui fluid large submit button" type="submit">登录账号</button>
+            </div>
+            <div class="ui red message {% ifequal msg None %}hidden{% endifequal %}">{{ msg }}</div>
+            {% csrf_token %}
+        </form>
+
+        <div class="ui message">
+            还未注册?/
+            <a href="{% url 'register' %}">注册</a>
+        </div>
+    </div>
+</div>
+{% endblock main %}
+{% block js %}
+<script src="/static/js/register.js"></script>
+{% endblock js %}
+{% block footer %}
+<div class="ui vertical footer">
+    <div class="ui container center aligned">
+        <span>来自皮卡粗的乱七八糟搜索</span> @copyright chalize_pikachu
+    </div>
+</div>
+{% endblock footer %}
